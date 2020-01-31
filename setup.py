@@ -12,11 +12,11 @@ instructions.
 
 setup(
     name="django-prometheus",
-    version="1.0.15",
+    version="1.0.16",
     author="Uriel Corfa",
     author_email="uriel@corfa.fr",
     description=(
-        "Django middlewares to monitor your application with Prometheus.io."),
+        "This is grofers fork of Django django-prometheus==1.0.15 middlewares to monitor your application with Prometheus.io."),
     license="Apache",
     keywords="django monitoring prometheus",
     url="http://github.com/korfuri/django-prometheus",
