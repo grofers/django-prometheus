@@ -2,6 +2,26 @@ from prometheus_client import Counter, Histogram
 from django_prometheus.utils import Time, TimeSince, PowersOf
 import django
 
+DEFAULT_LATENCY_BUCKETS = (
+    0.01,
+    0.025,
+    0.05,
+    0.075,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    2.5,
+    5.0,
+    7.5,
+    10.0,
+    25.0,
+    50.0,
+    75.0,
+    float("inf"),
+)
+
 if django.VERSION >= (1, 10, 0):
     from django.utils.deprecation import MiddlewareMixin
 else:
@@ -43,7 +63,10 @@ class PrometheusBeforeMiddleware(MiddlewareMixin):
 requests_latency_by_view_method = Histogram(
     'django_http_requests_latency_seconds_by_view_method',
     'Histogram of request processing time labelled by view.',
-    ['view', 'method'])
+    ['view', 'method'],
+    buckets=getattr(
+                settings, "PROMETHEUS_LATENCY_BUCKETS", DEFAULT_LATENCY_BUCKETS
+            ),)
 requests_unknown_latency = Counter(
     'django_http_requests_unknown_latency_total',
     'Count of requests for which the latency was unknown.')
