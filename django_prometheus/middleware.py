@@ -64,9 +64,7 @@ requests_latency_by_view_method = Histogram(
     'django_http_requests_latency_seconds_by_view_method',
     'Histogram of request processing time labelled by view.',
     ['view', 'method'],
-    buckets=getattr(
-                settings, "PROMETHEUS_LATENCY_BUCKETS", DEFAULT_LATENCY_BUCKETS
-            ),)
+    buckets=DEFAULT_LATENCY_BUCKETS)
 requests_unknown_latency = Counter(
     'django_http_requests_unknown_latency_total',
     'Count of requests for which the latency was unknown.')
