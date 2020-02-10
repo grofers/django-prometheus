@@ -17,8 +17,7 @@ DEFAULT_LATENCY_BUCKETS = (
     7.5,
     10.0,
     25.0,
-    50.0,
-    75.0,
+    70.0,
     float("inf"),
 )
 
