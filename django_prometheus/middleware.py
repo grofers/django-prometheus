@@ -35,7 +35,8 @@ responses_total = Counter(
 requests_latency_before = Histogram(
     'django_http_requests_latency_including_middlewares_seconds',
     ('Histogram of requests processing time (including middleware '
-     'processing time).'))
+     'processing time).'),
+    buckets=DEFAULT_LATENCY_BUCKETS)
 requests_unknown_latency_before = Counter(
     'django_http_requests_unknown_latency_including_middlewares_total',
     ('Count of requests for which the latency was unknown (when computing '
